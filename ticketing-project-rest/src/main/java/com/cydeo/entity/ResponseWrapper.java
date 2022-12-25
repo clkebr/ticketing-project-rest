@@ -1,13 +1,14 @@
 package com.cydeo.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.concurrent.ListenableFutureCallbackRegistry;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseWrapper {
@@ -29,4 +30,6 @@ public class ResponseWrapper {
         this.code = httpStatus.value();
         this.success = true;
     }
+
+
 }
