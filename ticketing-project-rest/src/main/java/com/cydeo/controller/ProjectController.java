@@ -39,9 +39,9 @@ public class ProjectController {
 
     }
 
-    @GetMapping("/{manager/project-status}")
+    @GetMapping("/manager/project-status")
     @RolesAllowed("Manager")
-    public ResponseEntity<ResponseWrapper> getAllProjectByManager(@PathVariable String manager){
+    public ResponseEntity<ResponseWrapper> getAllProjectByManager(){
         List<ProjectDTO> projectDTOS = projectService.listAllProjectDetails();
         return ResponseEntity.ok(new ResponseWrapper("projects are successfully retrieved",projectDTOS, HttpStatus.OK));
 
