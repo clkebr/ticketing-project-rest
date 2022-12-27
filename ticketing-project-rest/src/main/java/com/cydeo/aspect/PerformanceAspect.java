@@ -1,5 +1,6 @@
 package com.cydeo.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,9 +11,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Aspect
 @Configuration
+@Slf4j
 public class PerformanceAspect {
 
-    Logger logger = LoggerFactory.getLogger(PerformanceAspect.class);
+//    Logger log = LoggerFactory.getLogger(PerformanceAspect.class);
 
     @Pointcut("@annotation(com.cydeo.annotation.ExecutionTime)")
     private  void anyExecutionTimeOperation(){}
@@ -20,11 +22,11 @@ public class PerformanceAspect {
     @Around("anyExecutionTimeOperation()")
     public Object anyExecutionTimeOperationAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long beforeTime = System.currentTimeMillis();
-        logger.info("Execution will start");
+        log.info("Execution will start");
         Object result;
         result = proceedingJoinPoint.proceed();
         long afterTime = System.currentTimeMillis();
-        logger.info("Time taken to execute: {} ms - Method: {} - Parameters: {}", (afterTime-beforeTime),
+        log.info("Time taken to execute: {} ms - Method: {} - Parameters: {}", (afterTime-beforeTime),
                 proceedingJoinPoint.getSignature().toShortString(), proceedingJoinPoint.getArgs());
         return result;
     }
