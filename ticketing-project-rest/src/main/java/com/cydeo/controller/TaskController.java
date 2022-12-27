@@ -1,5 +1,6 @@
 package com.cydeo.controller;
 
+import com.cydeo.annotation.ExecutionTime;
 import com.cydeo.dto.TaskDTO;
 import com.cydeo.entity.ResponseWrapper;
 import com.cydeo.enums.Status;
@@ -52,6 +53,7 @@ public class TaskController {
         taskService.save(taskDTO);
         return ResponseEntity.accepted().body(new ResponseWrapper("Task is successfully created", HttpStatus.ACCEPTED));
     }
+    @ExecutionTime
     @DeleteMapping("/{id}")
     @RolesAllowed("Manager")
     public ResponseEntity<ResponseWrapper> deleteTask(@PathVariable Long id){
@@ -64,6 +66,7 @@ public class TaskController {
         taskService.update(taskDTO);
         return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated", HttpStatus.OK));
     }
+    @ExecutionTime
     @PutMapping("/employee/update/")
     @RolesAllowed("Employee")
     public ResponseEntity<ResponseWrapper> employeeUpdateTask(@RequestBody TaskDTO taskDTO){

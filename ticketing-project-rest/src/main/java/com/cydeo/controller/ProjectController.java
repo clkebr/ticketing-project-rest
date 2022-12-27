@@ -1,5 +1,6 @@
 package com.cydeo.controller;
 
+import com.cydeo.annotation.ExecutionTime;
 import com.cydeo.dto.ProjectDTO;
 import com.cydeo.entity.ResponseWrapper;
 import com.cydeo.enums.Status;
@@ -23,6 +24,7 @@ public class ProjectController {
     }
 
 
+    @ExecutionTime
     @GetMapping
     @RolesAllowed({"Admin","Manager"})
     public ResponseEntity<ResponseWrapper> getAllProject(){
@@ -31,6 +33,7 @@ public class ProjectController {
 
     }
 
+    @ExecutionTime
     @GetMapping("/{projectCode}")
     @RolesAllowed("Manager")
     public ResponseEntity<ResponseWrapper> getProjectByCode(@PathVariable String projectCode){
@@ -39,6 +42,7 @@ public class ProjectController {
 
     }
 
+    @ExecutionTime
     @GetMapping("/manager/project-status")
     @RolesAllowed("Manager")
     public ResponseEntity<ResponseWrapper> getAllProjectByManager(){
